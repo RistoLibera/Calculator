@@ -87,7 +87,6 @@ const controlDot = function(e){
     if(lastInput == ".") control = "off";
     
     lastInput = e.target.id; 
-    console.log(control)
     return control;  
 
 }
@@ -110,7 +109,6 @@ const getEquation = function(e){
         equation[counter] = input;
         counter += 1;
     }
-    console.log(equation)
     return equation;
 
 }
@@ -200,7 +198,7 @@ const calResult = function(){
 
         }
     }
-
+    if(isNaN(calResult)) return;
     if(!Number.isInteger(calResult)) {
         calResult =  calResult.toFixed(2);
         calResult = Number(calResult);
@@ -210,6 +208,8 @@ const calResult = function(){
 
 }
 
+// Result Output
+
 
 
 
@@ -218,3 +218,43 @@ buttons.forEach(button => button.addEventListener("click",clickInput));
 
 
 
+
+
+document.addEventListener("keydown", function(e){
+
+    console.log(e.key)
+    
+    const operators = {
+        "^" : "exponent",
+        "%" : "modulo",
+        "÷" : "divide",
+        "+" : "add",
+        "-" : "subtract",
+        "*" : "multiply"
+    }
+
+    if( !isNaN(e.key) && e.key !== " "){
+        document.getElementById(`${e.key}`).click();
+    } 
+
+    if( ["^", "÷", "*", "%", "+", "-"].includes(e.key)){
+        document.getElementById(operators[e.key]).click();
+    }
+
+    if( e.key === "Backspace"){
+        document.getElementById("backspace").click();
+    }
+
+    if( e.key === "c"){
+        document.getElementById("clear").click();
+    }
+
+    if ( e.key === "."){
+        document.getElementById(".").click();
+    }
+    
+    if( e.key === "=" || e.key === "Enter"){
+        document.getElementById("equal").click();
+    }
+
+})
