@@ -148,6 +148,8 @@ const clearHistory = function() {
     result.textContent = "";
     equation = [];
     counter = 0;
+    control = "on";
+    lastInput = "";
 }
 
 // Clear History Section
@@ -221,8 +223,6 @@ buttons.forEach(button => button.addEventListener("click",clickInput));
 
 
 document.addEventListener("keydown", function(e){
-
-    console.log(e.key)
     
     const operators = {
         "^" : "exponent",
